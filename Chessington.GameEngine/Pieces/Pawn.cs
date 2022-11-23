@@ -25,6 +25,15 @@ namespace Chessington.GameEngine.Pieces
                 if (board.isSquareEmpty(squareUp) == true)
                 {
                     possibleMoves.Add(squareUp);
+
+                    if (this.turnCount == 0)
+                    {
+                        var twoSquareUp = Square.At(currentSquare.Row - 2, currentSquare.Col);
+                        if (board.isSquareEmpty(twoSquareUp) == true)
+                        {
+                            possibleMoves.Add(twoSquareUp);
+                        }
+                    }
                 }
             }
 
@@ -35,6 +44,15 @@ namespace Chessington.GameEngine.Pieces
                 if (board.isSquareEmpty(squareDown) == true)
                 {
                     possibleMoves.Add(squareDown);
+
+                    if (this.turnCount == 0)
+                    {
+                        var twoSquareDown = Square.At(currentSquare.Row + 2, currentSquare.Col);
+                        if (board.isSquareEmpty(twoSquareDown) == true)
+                        {
+                            possibleMoves.Add(twoSquareDown);
+                        }
+                    }
                 }
             }
 
