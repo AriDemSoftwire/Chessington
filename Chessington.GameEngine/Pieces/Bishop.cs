@@ -23,10 +23,19 @@ namespace Chessington.GameEngine.Pieces
                 {
                     if (Math.Abs(currentSquare.Row - i) == Math.Abs(currentSquare.Col - j))
                     {
-                        possibleMoves.Add(Square.At(i, j));
+                        if (board.isSquareEmpty(Square.At(i, j)))
+                        {
+                            possibleMoves.Add(Square.At(i, j));
+                        }
+                        else
+                        {
+                            Console.WriteLine("fail");
+                            goto LoopEnd1;
+                        }
                     }
                 }
             }
+        LoopEnd1:
 
             for (int i = currentSquare.Row; i < 8; i++)
             {
@@ -34,10 +43,19 @@ namespace Chessington.GameEngine.Pieces
                 {
                     if (Math.Abs(currentSquare.Row - i) == Math.Abs(currentSquare.Col - j))
                     {
-                        possibleMoves.Add(Square.At(i, j));
+                        if (board.isSquareEmpty(Square.At(i, j)))
+                        {
+                            possibleMoves.Add(Square.At(i, j));
+                        }
+                        else
+                        {
+                            Console.WriteLine("fail");
+                            goto LoopEnd2;
+                        }
                     }
                 }
             }
+        LoopEnd2:
 
             for (int i = currentSquare.Row; i >= 0; i--)
             {
@@ -45,10 +63,19 @@ namespace Chessington.GameEngine.Pieces
                 {
                     if (Math.Abs(currentSquare.Row - i) == Math.Abs(currentSquare.Col - j))
                     {
-                        possibleMoves.Add(Square.At(i, j));
+                        if (board.isSquareEmpty(Square.At(i, j)))
+                        {
+                            possibleMoves.Add(Square.At(i, j));
+                        }
+                        else
+                        {
+                            Console.WriteLine("fail");
+                            goto LoopEnd3;
+                        }
                     }
                 }
             }
+        LoopEnd3:
 
             for (int i = currentSquare.Row; i >= 0; i--)
             {
@@ -56,10 +83,20 @@ namespace Chessington.GameEngine.Pieces
                 {
                     if (Math.Abs(currentSquare.Row - i) == Math.Abs(currentSquare.Col - j))
                     {
-                        possibleMoves.Add(Square.At(i, j));
+                        if (board.isSquareEmpty(Square.At(i, j)))
+                        {
+                            possibleMoves.Add(Square.At(i, j));
+                        }
+                        else
+                        {
+                            Console.WriteLine("fail");
+                            goto LoopEnd4;
+                        }
                     }
                 }
             }
+
+        LoopEnd4:
 
             possibleMoves.RemoveAll(s => s == currentSquare);
 
