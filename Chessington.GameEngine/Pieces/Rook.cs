@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Chessington.GameEngine.Pieces
 {
@@ -15,24 +16,40 @@ namespace Chessington.GameEngine.Pieces
             Player CurrentPlayer = this.Player == Player.White ? Player.White : Player.Black;
             var currentSquare = board.FindPiece(this);
 
-            for (var i = currentSquare.Row; i < 8; i++)
+            for (var i = currentSquare.Row + 1; i < 8; i++)
             {
-                possibleMoves.Add(Square.At(i, currentSquare.Col));
+                if (board.isSquareEmpty(Square.At(i, currentSquare.Col)))
+                {
+                    possibleMoves.Add(Square.At(i, currentSquare.Col));
+                }
+                else break;
             }
 
-            for (var i = currentSquare.Row; i >= 0; i--)
+            for (var i = currentSquare.Row - 1; i >= 0; i--)
             {
-                possibleMoves.Add(Square.At(i, currentSquare.Col));
+                if (board.isSquareEmpty(Square.At(i, currentSquare.Col)))
+                {
+                    possibleMoves.Add(Square.At(i, currentSquare.Col));
+                }
+                else break;
             }
 
-            for (var i = currentSquare.Col; i < 8; i++)
+            for (var i = currentSquare.Col + 1; i < 8; i++)
             {
-                possibleMoves.Add(Square.At(currentSquare.Row, i));
+                if (board.isSquareEmpty(Square.At(currentSquare.Row, i)))
+                {
+                    possibleMoves.Add(Square.At(currentSquare.Row, i));
+                }
+                else break;
             }
 
-            for (var i = currentSquare.Col; i >= 0; i--)
+            for (var i = currentSquare.Col - 1; i >= 0; i--)
             {
-                possibleMoves.Add(Square.At(currentSquare.Row, i));
+                if (board.isSquareEmpty(Square.At(currentSquare.Row, i)))
+                {
+                    possibleMoves.Add(Square.At(currentSquare.Row, i));
+                }
+                else break;
             }
 
             possibleMoves.RemoveAll(s => s == currentSquare);
