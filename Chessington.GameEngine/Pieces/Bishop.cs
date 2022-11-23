@@ -17,9 +17,12 @@ namespace Chessington.GameEngine.Pieces
             Player CurrentPlayer = this.Player == Player.White ? Player.White : Player.Black;
             var currentSquare = board.FindPiece(this);
 
-            for (int i = currentSquare.Row; i < 8; i++)
+
+
+
+            for (int i = currentSquare.Row + 1; i < 8; i++)
             {
-                for (int j = currentSquare.Col; j < 8; j++)
+                for (int j = currentSquare.Col + 1; j < 8; j++)
                 {
                     if (Math.Abs(currentSquare.Row - i) == Math.Abs(currentSquare.Col - j))
                     {
@@ -27,9 +30,9 @@ namespace Chessington.GameEngine.Pieces
                         {
                             possibleMoves.Add(Square.At(i, j));
                         }
+
                         else
                         {
-                            Console.WriteLine("fail");
                             goto LoopEnd1;
                         }
                     }
@@ -37,9 +40,9 @@ namespace Chessington.GameEngine.Pieces
             }
         LoopEnd1:
 
-            for (int i = currentSquare.Row; i < 8; i++)
+            for (int i = currentSquare.Row + 1; i < 8; i++)
             {
-                for (int j = currentSquare.Col; j >= 0; j--)
+                for (int j = currentSquare.Col - 1; j >= 0; j--)
                 {
                     if (Math.Abs(currentSquare.Row - i) == Math.Abs(currentSquare.Col - j))
                     {
@@ -49,7 +52,6 @@ namespace Chessington.GameEngine.Pieces
                         }
                         else
                         {
-                            Console.WriteLine("fail");
                             goto LoopEnd2;
                         }
                     }
@@ -57,9 +59,9 @@ namespace Chessington.GameEngine.Pieces
             }
         LoopEnd2:
 
-            for (int i = currentSquare.Row; i >= 0; i--)
+            for (int i = currentSquare.Row - 1; i >= 0; i--)
             {
-                for (int j = currentSquare.Col; j >= 0; j--)
+                for (int j = currentSquare.Col - 1; j >= 0; j--)
                 {
                     if (Math.Abs(currentSquare.Row - i) == Math.Abs(currentSquare.Col - j))
                     {
@@ -69,7 +71,6 @@ namespace Chessington.GameEngine.Pieces
                         }
                         else
                         {
-                            Console.WriteLine("fail");
                             goto LoopEnd3;
                         }
                     }
@@ -77,9 +78,9 @@ namespace Chessington.GameEngine.Pieces
             }
         LoopEnd3:
 
-            for (int i = currentSquare.Row; i >= 0; i--)
+            for (int i = currentSquare.Row - 1; i >= 0; i--)
             {
-                for (int j = currentSquare.Col; j < 8; j++)
+                for (int j = currentSquare.Col + 1; j < 8; j++)
                 {
                     if (Math.Abs(currentSquare.Row - i) == Math.Abs(currentSquare.Col - j))
                     {
@@ -89,7 +90,6 @@ namespace Chessington.GameEngine.Pieces
                         }
                         else
                         {
-                            Console.WriteLine("fail");
                             goto LoopEnd4;
                         }
                     }
