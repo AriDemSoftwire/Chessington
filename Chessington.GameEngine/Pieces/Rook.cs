@@ -22,6 +22,11 @@ namespace Chessington.GameEngine.Pieces
                 {
                     possibleMoves.Add(Square.At(i, currentSquare.Col));
                 }
+                else if (CurrentPlayer != board.GetPiece(Square.At(i, currentSquare.Col)).Player)
+                {
+                    possibleMoves.Add(Square.At(i, currentSquare.Col));
+                    break;
+                }
                 else break;
             }
 
@@ -30,6 +35,11 @@ namespace Chessington.GameEngine.Pieces
                 if (board.isSquareEmpty(Square.At(i, currentSquare.Col)))
                 {
                     possibleMoves.Add(Square.At(i, currentSquare.Col));
+                }
+                else if (CurrentPlayer != board.GetPiece(Square.At(i, currentSquare.Col)).Player)
+                {
+                    possibleMoves.Add(Square.At(i, currentSquare.Col));
+                    break;
                 }
                 else break;
             }
@@ -40,6 +50,11 @@ namespace Chessington.GameEngine.Pieces
                 {
                     possibleMoves.Add(Square.At(currentSquare.Row, i));
                 }
+                else if (CurrentPlayer != board.GetPiece(Square.At(currentSquare.Row, i)).Player)
+                {
+                    possibleMoves.Add(Square.At(currentSquare.Row, i));
+                    break;
+                }
                 else break;
             }
 
@@ -48,6 +63,11 @@ namespace Chessington.GameEngine.Pieces
                 if (board.isSquareEmpty(Square.At(currentSquare.Row, i)))
                 {
                     possibleMoves.Add(Square.At(currentSquare.Row, i));
+                }
+                else if (CurrentPlayer != board.GetPiece(Square.At(currentSquare.Row, i)).Player)
+                {
+                    possibleMoves.Add(Square.At(currentSquare.Row, i));
+                    break;
                 }
                 else break;
             }
