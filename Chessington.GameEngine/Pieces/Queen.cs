@@ -16,68 +16,119 @@ namespace Chessington.GameEngine.Pieces
             Player CurrentPlayer = this.Player == Player.White ? Player.White : Player.Black;
             var currentSquare = board.FindPiece(this);
 
-            for (int i = currentSquare.Row; i < 8; i++)
+
+            for (int i = currentSquare.Row + 1; i < 8; i++)
             {
-                for (int j = currentSquare.Col; j < 8; j++)
+                for (int j = currentSquare.Col + 1; j < 8; j++)
                 {
                     if (Math.Abs(currentSquare.Row - i) == Math.Abs(currentSquare.Col - j))
                     {
-                        possibleMoves.Add(Square.At(i, j));
+                        if (board.isSquareEmpty(Square.At(i, j)))
+                        {
+                            possibleMoves.Add(Square.At(i, j));
+                        }
+
+                        else
+                        {
+                            goto LoopEnd1;
+                        }
+                    }
+                }
+            }
+        LoopEnd1:
+
+            for (int i = currentSquare.Row + 1; i < 8; i++)
+            {
+                for (int j = currentSquare.Col - 1; j >= 0; j--)
+                {
+                    if (Math.Abs(currentSquare.Row - i) == Math.Abs(currentSquare.Col - j))
+                    {
+                        if (board.isSquareEmpty(Square.At(i, j)))
+                        {
+                            possibleMoves.Add(Square.At(i, j));
+                        }
+                        else
+                        {
+                            goto LoopEnd2;
+                        }
+                    }
+                }
+            }
+        LoopEnd2:
+
+            for (int i = currentSquare.Row - 1; i >= 0; i--)
+            {
+                for (int j = currentSquare.Col - 1; j >= 0; j--)
+                {
+                    if (Math.Abs(currentSquare.Row - i) == Math.Abs(currentSquare.Col - j))
+                    {
+                        if (board.isSquareEmpty(Square.At(i, j)))
+                        {
+                            possibleMoves.Add(Square.At(i, j));
+                        }
+                        else
+                        {
+                            goto LoopEnd3;
+                        }
+                    }
+                }
+            }
+        LoopEnd3:
+
+            for (int i = currentSquare.Row - 1; i >= 0; i--)
+            {
+                for (int j = currentSquare.Col + 1; j < 8; j++)
+                {
+                    if (Math.Abs(currentSquare.Row - i) == Math.Abs(currentSquare.Col - j))
+                    {
+                        if (board.isSquareEmpty(Square.At(i, j)))
+                        {
+                            possibleMoves.Add(Square.At(i, j));
+                        }
+                        else
+                        {
+                            goto LoopEnd4;
+                        }
                     }
                 }
             }
 
-            for (int i = currentSquare.Row; i < 8; i++)
+        LoopEnd4:
+
+            for (var i = currentSquare.Row + 1; i < 8; i++)
             {
-                for (int j = currentSquare.Col; j >= 0; j--)
+                if (board.isSquareEmpty(Square.At(i, currentSquare.Col)))
                 {
-                    if (Math.Abs(currentSquare.Row - i) == Math.Abs(currentSquare.Col - j))
-                    {
-                        possibleMoves.Add(Square.At(i, j));
-                    }
+                    possibleMoves.Add(Square.At(i, currentSquare.Col));
                 }
+                else break;
             }
 
-            for (int i = currentSquare.Row; i >= 0; i--)
+            for (var i = currentSquare.Row - 1; i >= 0; i--)
             {
-                for (int j = currentSquare.Col; j >= 0; j--)
+                if (board.isSquareEmpty(Square.At(i, currentSquare.Col)))
                 {
-                    if (Math.Abs(currentSquare.Row - i) == Math.Abs(currentSquare.Col - j))
-                    {
-                        possibleMoves.Add(Square.At(i, j));
-                    }
+                    possibleMoves.Add(Square.At(i, currentSquare.Col));
                 }
+                else break;
             }
 
-            for (int i = currentSquare.Row; i >= 0; i--)
+            for (var i = currentSquare.Col + 1; i < 8; i++)
             {
-                for (int j = currentSquare.Col; j < 8; j++)
+                if (board.isSquareEmpty(Square.At(currentSquare.Row, i)))
                 {
-                    if (Math.Abs(currentSquare.Row - i) == Math.Abs(currentSquare.Col - j))
-                    {
-                        possibleMoves.Add(Square.At(i, j));
-                    }
+                    possibleMoves.Add(Square.At(currentSquare.Row, i));
                 }
+                else break;
             }
 
-            for (var i = currentSquare.Row; i < 8; i++)
+            for (var i = currentSquare.Col - 1; i >= 0; i--)
             {
-                possibleMoves.Add(Square.At(i, currentSquare.Col));
-            }
-
-            for (var i = currentSquare.Row; i >= 0; i--)
-            {
-                possibleMoves.Add(Square.At(i, currentSquare.Col));
-            }
-
-            for (var i = currentSquare.Col; i < 8; i++)
-            {
-                possibleMoves.Add(Square.At(currentSquare.Row, i));
-            }
-
-            for (var i = currentSquare.Col; i >= 0; i--)
-            {
-                possibleMoves.Add(Square.At(currentSquare.Row, i));
+                if (board.isSquareEmpty(Square.At(currentSquare.Row, i)))
+                {
+                    possibleMoves.Add(Square.At(currentSquare.Row, i));
+                }
+                else break;
             }
 
             possibleMoves.RemoveAll(s => s == currentSquare);
