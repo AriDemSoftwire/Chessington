@@ -23,6 +23,8 @@ namespace Chessington.GameEngine.Pieces
                 Square.At(currentSquare.Row - 1, currentSquare.Col - 2)
                 };
 
+            possibleMoves.RemoveAll(s => 0 > s.Row || s.Row >= 8 || 0 > s.Col || s.Col >= 8);
+
             return possibleMoves;
         }
     }

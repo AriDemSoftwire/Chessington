@@ -20,8 +20,9 @@ namespace Chessington.GameEngine.Pieces
 
             if (CurrentPlayer == Player.White)
             {
-                Console.WriteLine("white");
+                if (currentSquare.Row == 0) goto ifEnd;
                 var squareUp = Square.At(currentSquare.Row - 1, currentSquare.Col);
+
                 if (board.isSquareEmpty(squareUp) == true)
                 {
                     possibleMoves.Add(squareUp);
@@ -39,8 +40,9 @@ namespace Chessington.GameEngine.Pieces
 
             if (CurrentPlayer == Player.Black)
             {
-                Console.WriteLine("black");
+                if (currentSquare.Row == 7) goto ifEnd;
                 var squareDown = Square.At(currentSquare.Row + 1, currentSquare.Col);
+
                 if (board.isSquareEmpty(squareDown) == true)
                 {
                     possibleMoves.Add(squareDown);
@@ -55,6 +57,8 @@ namespace Chessington.GameEngine.Pieces
                     }
                 }
             }
+
+        ifEnd:
 
             return possibleMoves;
         }
